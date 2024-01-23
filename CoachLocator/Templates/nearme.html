@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/main.css' %}">
+
+</head>
+<body>
+
+     
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    
+
+
+    <div class="continer1">
+        {% for i in coaches %}
+        <div class="block"><img class="ProfilePic" src="{{i.profile_pic}}"/>
+            <div class="info">
+                <p>{{i.name}}</p>
+                <p>{{i.phone}}</p>
+                <p>{{i.email}}</p>
+            </div>
+            <p class="Achivements">{{i.bio}}</p>
+        </div>
+        
+            
+            
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

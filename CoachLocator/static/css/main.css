@@ -9,48 +9,56 @@ body {
 
 .profile-card {
     display: flex;
-    align-items: flex-start; /* Adjust alignment to top */
+    align-items: center; /* Adjust alignment to top */
     background: #2D3250; /* Light background for the whole block */
-    border: 3px solid #ffffff; /* Darker border */
     margin-bottom: 40px;
     margin-left: 40px; 
     margin-right: 40px;
     padding: 15px; 
-    box-shadow: 12px 12px 0px 1px #424769;/* Subtle shadow */
+    box-shadow: 1px 1px 2px #424769;/* Subtle shadow */
   }
   
 .info-row {
     display: flex;
     padding: 15px;
+    flex-wrap: nowrap;
+
+
   }
   
 .profile-pic-column {
     display: flex;
     align-items: center;
-    margin-right: 15px; /* Space between the picture and the details */
+    flex-wrap: nowrap;
   }
   
 .ProfilePic {
-    
     border-radius: 50%;
-    width: 75px;
-    height: 75px;
+    width: 90px;
+    height: 90px;
     object-fit: cover;
     border: 3px solid #ffffff;
   }
   
 .details-column {
-    
     display: flex;
     flex-direction: column;
+    align-items: start;
     color: #a7a5a5;
     justify-content: center;
     font-weight: bold;
-    padding: 2px;
+    font-size: 1em;
+    padding-left: 10px;
   }
   
-.details-column h2,
+.details-column h2 {
+    font-weight: bold;
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+    margin: 5px 0; /* Spacing for name and contact info */
+  }
+
 .details-column p {
+    font-size: clamp(0.8rem, 4vw, 0.8rem);
     margin: 5px 0; /* Spacing for name and contact info */
   }
   
@@ -63,3 +71,21 @@ body {
     margin-top: 10px; /* Space above bio */
   }
   
+@media screen and (max-width: 768px) {
+    .info-row, .bio-row, .details-column, .profile-pic-column {
+        display: flex;
+        flex-wrap: nowrap;
+
+        text-align: start; /* Center-align text */
+    }
+
+    .profile-pic-column {
+        margin-bottom: 10px; /* Add space between the image and the details below */
+    }
+
+    .profile-card {
+        margin-left: 20px; /* Decrease side margins on smaller screens */
+        margin-right: 20px;
+        flex-wrap: wrap;
+    }
+}

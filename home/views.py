@@ -27,6 +27,7 @@ def nearme(request):
         if form.is_valid():
             zip_code = form.cleaned_data['zip_code']
             coaches = Coaches.objects.filter(zip_code=zip_code)
+            
             return render(request, 'nearme.html', {'coaches': coaches})
     else:
         form = ZipSearchForm()

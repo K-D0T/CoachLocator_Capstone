@@ -21,22 +21,18 @@
 
     
 
-
-    <div class="continer1">
-        {% for i in coaches %}
-        <div class="block"><img class="ProfilePic" src="{{i.profile_pic}}"/>
-            <div class="info">
-                <p>{{i.name}}</p>
-                <p>{{i.phone}}</p>
-                <p>{{i.email}}</p>
+    {% for i in coaches %}
+        <div class="container1">
+            <div class="block">
+                <img class="ProfilePic" src="{{i.profile_pic}}" alt="Profile Picture"/>
+                <div class="info">
+                    <h2>{{i.first_name}} {{i.last_name}}</h2>
+                    <p class="contact">{{i.phone}}</p>
+                    <p class="contact">{{i.email}}</p>
+                    <p class="bio">{{i.bio}}</p>
+                </div>
             </div>
-            <p class="Achivements">{{i.bio}}</p>
         </div>
-        
-            
-            
-        </div>
-        {% endfor %}
-    </div>
+    {% endfor %}   
 </body>
 </html>

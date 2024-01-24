@@ -1,110 +1,59 @@
-.zipcode {
-    width: 70px;
-    height: 20px;
-    text-align: center;
-    justify-content: center;
-}
+/* Add this at the top of your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
 
-.Distance {
-    width: 70px;
-    height: 20px;
-    text-align: center;
-    justify-content: center;
-}
-
-.continer1 {   
-    background-color: white;
-    padding: 20px;
-    /* width: 100px; */
-}
-
-.btn:hover{
-    color:#fff;
-}
-
-.input-text:focus{
-       
-  
-    box-shadow: 0px 0px 0px;
-    border-color:#f8c146;
-    outline: 0px;
-}
-
-.form-control {
-    border: 1px solid #f8c146;
+body {
+  font-family: 'Open+Sans', sans-serif;
+  background-color: black;
 }
 
 .block {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-radius: 10px;
-    border: 3px solid #000000;
-    margin-bottom: 30px;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 200px;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    position: relative;
-    box-shadow: 10px 10px;
-    width: 200px;
-    flex-direction: row;
-}
-
-p {
-    margin: 0px;
-}
-
-.info {  /* New class for holding name, number, and email */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: xx-small;
-    padding-left: 20px;
-}
-
-
-
-.searchblock {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-radius: 10px;
-    border: 3px solid #000000;
-    margin: 30px;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    
-    position: relative;
-    box-shadow: 10px 10px;
-
-}
-
+    align-items: flex-start; /* Adjust alignment to top */
+    background: #2D3250; /* Light background for the whole block */
+    border: 3px solid #ffffff; /* Darker border */
+    margin-bottom: 40px;
+    margin-left: 40px; 
+    margin-right: 40px;
+    padding: 15px; 
+    box-shadow: 12px 12px 0px 1px #424769;/* Subtle shadow */
+  }
+  
 .ProfilePic {
-    height: 70px;
-    width: 70px;
     border-radius: 50%;
-    
-    
-}
-
-.Achivements {
-    display: inline-block;
-    flex-direction: column;
-    align-items: flex-start;
-    word-wrap: break-word;
-    position: relative;
-    padding-left: 20px;
-    font-size: xx-small;
-
-}
-
-
-
-.block:last-child {
-    margin-bottom: 0;
-}
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    object-fit: cover;
+    border: 3px solid #424769; /* Peach color for accent */
+  }
+  
+.info {
+    flex-grow: 1;
+  }
+  
+.info h2, .info p {
+    margin: 0;
+  }
+  
+.info h2 {
+    color: #a7a5a5; /* Dark blue for the name */
+    font-size: 1.5em; /* Larger font size for the name */
+    margin-bottom: 5px; /* Space between name and other details */
+  }
+  
+.info p {
+    color: #c7c7c7; /* Medium blue for details */
+    font-size: 0.9em;
+  }
+  
+.info .bio {
+    background-color: #424769; /* Light blue for bio background */
+    color: #FFF; /* White text for bio */
+    font-size: 0.9em;
+    padding: 10px; /* Padding inside bio */
+    border-radius: 5px; /* Rounded corners for bio section */
+    margin-top: 10px; /* Space above bio */
+  }
+  
+  /* You can add hover effects or other interactions below */
+  

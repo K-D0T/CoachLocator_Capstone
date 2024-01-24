@@ -6,7 +6,8 @@ body {
   background-color: black;
 }
 
-.block {
+
+.profile-card {
     display: flex;
     align-items: flex-start; /* Adjust alignment to top */
     background: #2D3250; /* Light background for the whole block */
@@ -18,42 +19,47 @@ body {
     box-shadow: 12px 12px 0px 1px #424769;/* Subtle shadow */
   }
   
+.info-row {
+    display: flex;
+    padding: 15px;
+  }
+  
+.profile-pic-column {
+    display: flex;
+    align-items: center;
+    margin-right: 15px; /* Space between the picture and the details */
+  }
+  
 .ProfilePic {
+    
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    margin-right: 15px;
+    width: 75px;
+    height: 75px;
     object-fit: cover;
-    border: 3px solid #424769; /* Peach color for accent */
+    border: 3px solid #ffffff;
   }
   
-.info {
-    flex-grow: 1;
+.details-column {
+    
+    display: flex;
+    flex-direction: column;
+    color: #a7a5a5;
+    justify-content: center;
+    font-weight: bold;
+    padding: 2px;
   }
   
-.info h2, .info p {
-    margin: 0;
+.details-column h2,
+.details-column p {
+    margin: 5px 0; /* Spacing for name and contact info */
   }
   
-.info h2 {
-    color: #a7a5a5; /* Dark blue for the name */
-    font-size: 1.5em; /* Larger font size for the name */
-    margin-bottom: 5px; /* Space between name and other details */
-  }
-  
-.info p {
-    color: #c7c7c7; /* Medium blue for details */
-    font-size: 0.9em;
-  }
-  
-.info .bio {
+.bio-row {
     background-color: #424769; /* Light blue for bio background */
-    color: #FFF; /* White text for bio */
-    font-size: 0.9em;
-    padding: 10px; /* Padding inside bio */
+    color: #a7a5a5; /* White text for bio */
+    font-size: 1em;
+    padding: 15px; /* Padding inside bio */
     border-radius: 5px; /* Rounded corners for bio section */
     margin-top: 10px; /* Space above bio */
   }
-  
-  /* You can add hover effects or other interactions below */
   

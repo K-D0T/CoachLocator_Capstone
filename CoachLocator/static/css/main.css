@@ -2,28 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
 
 body {
-  font-family: 'Open+Sans', sans-serif;
-  background-color: black;
+  font-family: Garamond; 
+  background-color: #F0ECE5;
 }
 
 
 .profile-card {
     display: flex;
-    align-items: center; /* Adjust alignment to top */
-    background: #2D3250; /* Light background for the whole block */
-    margin-bottom: 40px;
-    margin-left: 40px; 
-    margin-right: 40px;
-    padding: 15px; 
-    box-shadow: 1px 1px 2px #424769;/* Subtle shadow */
+    flex-direction: column;
+
+    align-items: start; /* Adjust alignment to top */
+    background: #161A30; /* Light background for the whole block */
+    border-radius: 15px;
+    margin-bottom: 10px;
+    
+    
   }
   
 .info-row {
     display: flex;
-    padding: 15px;
+    padding: 10px;
+    width:50%;
     flex-wrap: nowrap;
-
-
   }
   
 .profile-pic-column {
@@ -34,45 +34,85 @@ body {
   
 .ProfilePic {
     border-radius: 50%;
-    width: 90px;
-    height: 90px;
+    width: 100%;
+    max-width: 70px;
+    height: auto;
     object-fit: cover;
-    border: 3px solid #ffffff;
+    border: 3px solid #B6BBC4;
   }
   
 .details-column {
     display: flex;
+    width: 100%;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: start;
-    color: #a7a5a5;
-    justify-content: center;
+    color: #F0ECE5;
+    justify-content: start;
     font-weight: bold;
-    font-size: 1em;
-    padding-left: 10px;
+    padding-left: 20px;
   }
   
 .details-column h2 {
+
     font-weight: bold;
-    font-size: clamp(1.2rem, 5vw, 1.5rem);
+    font-family: Garamond, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif; 
+    font-size: 17px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 23px;
+    font-size: clamp(0.5rem, 5vw, 1rem);
     margin: 5px 0; /* Spacing for name and contact info */
   }
 
 .details-column p {
-    font-size: clamp(0.8rem, 4vw, 0.8rem);
+    font-size: clamp(0.2rem, 3vw, 0.7rem);
     margin: 5px 0; /* Spacing for name and contact info */
   }
+
+.icon-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between; /* This will space out the icons evenly */
+    align-items: center;
+
+}
+
+.icon {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: block;
+    /* Other styles here */
+}
   
-.bio-row {
-    background-color: #424769; /* Light blue for bio background */
-    color: #a7a5a5; /* White text for bio */
-    font-size: 1em;
-    padding: 15px; /* Padding inside bio */
-    border-radius: 5px; /* Rounded corners for bio section */
-    margin-top: 10px; /* Space above bio */
+  .bio-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    background-color: #31304D;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: #F0ECE5;
+    padding: 10px 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: padding 0.8s ease;
+    width: 100%; /* accounting for padding */
+    box-sizing: border-box; /* ensures padding is included in width */
+    flex-grow: 1;
+  }
+  
+  .profile-card:hover .bio-row {
+    align-items: center;
+    padding: 15px; /* Add padding to the bio when expanded */
+    max-height: 100%; /* Set a max-height that can contain the text */
   }
   
 @media screen and (max-width: 768px) {
-    .info-row, .bio-row, .details-column, .profile-pic-column {
+    .info-row, .bio-row, .details-column, .profile-pic-column, .icon-row {
         display: flex;
         flex-wrap: nowrap;
 
@@ -84,8 +124,7 @@ body {
     }
 
     .profile-card {
-        margin-left: 20px; /* Decrease side margins on smaller screens */
-        margin-right: 20px;
+
         flex-wrap: wrap;
     }
 }

@@ -22,26 +22,26 @@
     
 
     {% for i in coaches %}
-        <div class="container1">
-            <div class="profile-card">
-                <div class="info-row"> <!-- Flex container for the top row -->
-                    <div class="profile-pic-column">
-                        <img class="ProfilePic" src="{{ i.profile_pic }}" alt="Profile Picture"/>
-                        
-                    </div>
-                    <div class="details-column">
-                        <h2>{{ i.first_name }} {{ i.last_name }}</h2>
-                        <p>{{ i.phone }}</p>
-                        <p>{{ i.email }}</p>
-                    </div>
-                    </div>
-                <div class="bio-row"> <!-- Separate flex container for the bio -->
 
-                    <p>{{ i.bio }}</p>
+        <div class="profile-card">
+            <div class="info-row"> <!-- Flex container for the top row -->
+                <div class="profile-pic-column">
+                    <img class="ProfilePic" src="{{ i.profile_pic }}" alt="Profile Picture"/>
                 </div>
-
+                <div class="details-column">
+                    <h2>{{ i.first_name }} {{ i.last_name }}</h2>
+                    <div class="icon-row">
+                        <img class='icon' src="{% static 'canstunt.png' %}"></img>
+                        <img class='icon' src="{% static 'canstunt.png' %}"></img>
+                        <img class='icon' src="{% static 'canstunt.png' %}"></img>
+                    </div>
+                </div>
+                
             </div>
-              
+            <div class="bio-row"> <!-- Separate flex container for the bio -->
+                <p>{{ i.bio }}</p>
+            </div>
+
         </div>
     {% endfor %}   
 </body>

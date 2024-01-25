@@ -6,7 +6,6 @@ body {
   background-color: #161A30;
 }
 
-
 .profile-card {
     display: flex;
     flex-direction: column;
@@ -22,13 +21,11 @@ body {
     padding: 10px;
     width:100%;
     height: 75px;
-    flex-wrap: nowrap;
   }
   
 .profile-pic-column {
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
   }
   
 .ProfilePic {
@@ -127,13 +124,10 @@ body {
 @media screen and (max-width: 768px) {
     .info-row, .bio-row, .details-row, .profile-pic-column, .icon-column {
         display: flex;
-        flex-wrap: nowrap;
-
         text-align: start; /* Center-align text */
     }
 
     .profile-card {
-
         flex-wrap: wrap;
     }
 }

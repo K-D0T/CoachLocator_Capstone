@@ -28,13 +28,22 @@
                 <div class="profile-pic-column">
                     <img class="ProfilePic" src="{{ i.profile_pic }}" alt="Profile Picture"/>
                 </div>
-                <div class="details-column">
+                <div class="details-row">
                     <h2>{{ i.first_name }} {{ i.last_name }}</h2>
-                    <div class="icon-row">
-                        <img class='icon' src="{% static 'canstunt.png' %}"></img>
-                        <img class='icon' src="{% static 'canstunt.png' %}"></img>
-                        <img class='icon' src="{% static 'canstunt.png' %}"></img>
-                    </div>
+                    <p>{{i.zip_code}}</p>
+                    <p>{{i.phone}}</p>
+                    <p>{{i.email}}</p>
+                    
+                </div>
+                <div class="icon-column">
+                    <img class='icon' src="{% static 'price.png' %}">
+                    <img class='icon' src="{% static 'canstunt.png' %}"></img>
+                    <img class='icon' src="{% static 'tumbling.png' %}"></img>
+                </div>
+                <div class="icon-text-column">
+                    <p>$100</p>
+                    <p>COED</p>
+                    <p>TUMBLING</p>
                 </div>
                 
             </div>

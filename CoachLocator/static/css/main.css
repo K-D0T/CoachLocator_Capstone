@@ -4,7 +4,15 @@
 body {
   font-family: 'Roboto Mono', monospace;
   background-color: #161A30;
+  margin: 0px;
 }
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 
 .profile-card {
     display: flex;
@@ -19,13 +27,14 @@ body {
     display: flex;
     flex-grow: 1;
     padding: 10px;
-    width:100%;
     height: 75px;
+    flex-wrap: nowrap;
   }
   
 .profile-pic-column {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
   }
   
 .ProfilePic {
@@ -43,19 +52,19 @@ body {
 .details-row {
     display: flex;
     height: 100%;
+    width: 200px;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: start;
     color: #161A30;
     justify-content: start;
     font-weight: bold;
-    padding-left: 20px;
+    padding-left: 10px;
   }
   
 .details-row h2 {
     font-weight: bold;
     font-size: clamp(0.5rem, 5vw, 0.9rem);
-    width: 150px;
     margin-top: 0px; /* Spacing for name and contact info */
     margin-bottom: 15px;
   }
@@ -69,20 +78,21 @@ body {
 .icon-column {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* This will space out the icons evenly */
+    justify-content: center; /* This will space out the icons evenly */
     gap: 5px;
     align-items: center;
   }
 
 .icon-column p {
+
     display: inline; /* Inline display for the text next to the icon */
     font-size: clamp(0.2rem, 3vw, 0.7rem); /* Adjust the font size as needed */
     /* Add any other desired text styling here */
 }
 
 .icon {
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     border-radius: 50%;
     display: inline-block;
   }
@@ -91,6 +101,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 5px;
+    /* align-items: center; */
     padding-left: 8px;
 }
 
@@ -124,10 +136,13 @@ body {
 @media screen and (max-width: 768px) {
     .info-row, .bio-row, .details-row, .profile-pic-column, .icon-column {
         display: flex;
+        flex-wrap: nowrap;
+
         text-align: start; /* Center-align text */
     }
 
     .profile-card {
+
         flex-wrap: wrap;
     }
 }

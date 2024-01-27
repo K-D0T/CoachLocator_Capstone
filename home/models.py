@@ -6,6 +6,30 @@ class Coaches(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
+    price = models.IntegerField()
+    # chose between coed or allgirl 
+    coed = 'Coed'
+    allgirl = 'All-Girl'
+    COED_ALLGIRL_CHOICES = [
+        (coed, 'Coed'),
+        (allgirl, 'All-Girl'),
+    ]
+    coed_allgirl = models.CharField(
+        max_length=10,
+        choices=COED_ALLGIRL_CHOICES,
+        default=coed,
+    )
+    yes = 'Yes'
+    no = 'No'
+    TUMBLING_CHOICES = [
+        (yes, 'yes'),
+        (no, 'no'),
+    ]
+    coach_tumbling = models.CharField(
+        max_length=10,
+        choices=TUMBLING_CHOICES,
+        default=no,
+    )
     bio = models.TextField()
     zip_code = models.CharField(max_length=10)
     profile_pic = models.ImageField(upload_to='media/', blank=True, null=True)

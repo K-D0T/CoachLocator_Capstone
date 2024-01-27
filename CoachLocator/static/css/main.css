@@ -52,7 +52,7 @@ body {
 .details-row {
     display: flex;
     height: 100%;
-    width: 200px;
+    width: 190px;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: start;

@@ -7,20 +7,29 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/main.css' %}">
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/index.css' %}">
 
 </head>
 <body>
-    <div class="continer">
-        <div class="block"><img class="ProfilePic" src="{% static 'yezus.jpg' %}"/><p class="Achivements">Meet Coach Ye. He cheered at Donda Academy for four years winning 12 rings.</p></div>
-        <div class="block"><img class="ProfilePic" src="{% static 'yezus.jpg' %}"> text text text text text text text</div>
-        
-        <div class="block"><img class="ProfilePic" src="{% static 'yezus.jpg' %}"> text text text text text text text</div>
-        <div class="block"><img class="ProfilePic" src="{% static 'yezus.jpg' %}"> text text text text text text text</div>
-        <div class="block"><img class="ProfilePic" src="{% static 'yezus.jpg' %}"> text text text text text text text</div>
-        <div class="block"><img class="ProfilePic" src="{% static 'yezus.jpg' %}"> text text text text text text text</div>
-        <div class="block"><img class="ProfilePic" src="{% static 'yezus.jpg' %}"> text text text text text text text</div>
-        <div class="block"><img class="ProfilePic" src="{% static 'yezus.jpg' %}"> text text text text text text text</div>
+
+    <div class="navbar">
+        <a>StuntSolutions | </a>
+        <a>Login</a>
+        <a>Register</a>
     </div>
+
+    <div class="form-box">
+        <div class="header">
+            <h1>FIND A CHEER COACH NEAR YOU</h1>
+            <p>OUR GOAL IS TO HELP YOU REACH YOURS</p>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
 </body>
 </html>

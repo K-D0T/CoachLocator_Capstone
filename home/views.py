@@ -13,15 +13,6 @@ import os
 from django.shortcuts import render, get_object_or_404, redirect
 
 def home(request):
-
-
-    context = {
-
-    }
-    return render(request, 'index.html', context)
-
-
-def nearme(request):
     if request.method == "POST":
         form = ZipSearchForm(request.POST)
         if form.is_valid():
@@ -38,9 +29,17 @@ def nearme(request):
             coaches_with_distance.sort(key=lambda x: x[1])
             
 
+            form = ZipSearchForm()
             
-            
-            return render(request, 'nearme.html', {'coaches_with_distance': coaches_with_distance})
+            return render(request, 'nearme.html', {'coaches_with_distance': coaches_with_distance, 'form': form})
     else:
         form = ZipSearchForm()
-    return render(request, 'nearme.html', {'form': form})
+        context = {
+            'form': form
+        }
+    return render(request, 'index.html', context)
+
+
+def nearme(request):
+    
+    return render(request, 'nearme.html', {})

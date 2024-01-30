@@ -5,21 +5,28 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>StuntSolutions</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/main.css' %}">
 
 </head>
 <body>
-
-     
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Search</button>
-    </form>
-
-    
+    <div class="navbar">
+        <a>StuntSolutions | </a>
+        <a>Login</a>
+        <a>Register</a>
+    </div>
+    <div class="form-box">
+        <div class="header">
+            <h1>Find a Cheer Coach Near You</h1>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+    </div>
     <div class="profile-container">
         {% for coach, distance in coaches_with_distance %}
             

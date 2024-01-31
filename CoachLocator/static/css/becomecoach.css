@@ -1,0 +1,84 @@
+body, html {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #161A30;
+    margin: 0;
+
+  }
+  
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #F0ECE5;
+    font-size: 0.8rem;
+    height: 6vh; 
+    background-color: #31304D;
+    padding: 10px 20px;
+  
+  }
+
+h1 {
+    color: #F0ECE5;
+    text-align: center;
+  }
+
+
+  /* Form styles */
+form p {
+    margin-bottom: 1rem;
+  }
+  
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='file'],
+textarea,
+select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+button {
+    background-color: #31304D;
+    color: #F0ECE5;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  /* Media Queries */
+@media screen and (max-width: 767px) {
+    /* Adjust padding and font sizes for mobile */
+    .container {
+        padding: 10px;
+    }
+
+    form p {
+        font-size: 16px; /* Larger font size for mobile */
+    }
+
+    input[type='submit'] {
+        width: 100%; /* Full width on mobile devices */
+    }
+  }
+  
+  /* Container for the form to center it */
+.container {
+    max-width: 100%; /* Set a max-width for larger screens */
+    color: #F0ECE5;
+    padding: 20px;
+    margin: 10px;
+    border: solid 1px #F0ECE5;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }

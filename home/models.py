@@ -30,9 +30,10 @@ class Coaches(models.Model):
         choices=TUMBLING_CHOICES,
         default=no,
     )
-    bio = models.TextField()
+    
     zip_code = models.CharField(max_length=10)
     profile_pic = models.ImageField(upload_to='media/', blank=True, null=True)
+    bio = models.TextField()
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

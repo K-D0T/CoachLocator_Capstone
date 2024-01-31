@@ -1,0 +1,225 @@
+/* Add this at the top of your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+body {
+  font-family: 'Roboto Mono', monospace;
+  background-color: #161A30;
+  margin: 0px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px #F0ECE5;
+  border-radius: 10px;
+  margin: 20px;
+  padding-bottom: 15px;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding-bottom: 15px;
+}
+
+form p {
+  color: #F0ECE5;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+button {
+  background-color: #31304D;
+  color: #F0ECE5;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #F0ECE5;
+  height: 6vh; 
+  background-color: #31304D;
+  padding: 10px 20px;
+
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  color: #F0ECE5;
+  font-size: 0.5rem;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #161A30;
+  height: 100vh;
+  width: 100vw;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #31304D;
+  color: #F0ECE5;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: bold;
+  width: 75px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: start; /* Adjust alignment to top */
+    background: #F0ECE5; /* Light background for the whole block */
+    border-radius: 15px;
+    margin-bottom: 10px;
+    box-shadow: 2px 5px 0px #b8b4af;
+  }
+  
+.info-row {
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+    height: 85px;
+    flex-wrap: nowrap;
+  }
+  
+.profile-pic-column {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  
+.ProfilePic {
+    border-radius: 50%;
+    width: 100%;
+    max-width: 70px;
+    min-width: 30px;
+    max-height: 70px;
+    min-height: 30px;
+    height: 100%;
+    object-fit: cover;
+    border: 3px solid #dfdbd6;
+  }
+  
+.details-row {
+    height: 100%;
+    width: 200px;
+    color: #161A30;
+    font-weight: bold;
+    padding-left: 10px;
+  }
+  
+.details-row h2 {
+    font-weight: bold;
+    font-size: clamp(0.5rem, 5vw, 0.9rem);
+    margin-top: 0px; /* Spacing for name and contact info */
+    margin-bottom: 15px;
+  }
+
+.details-row p {
+    font-size: clamp(0.2rem, 3vw, 0.5rem);
+    margin-top: 0px;
+    margin-bottom: 7px;
+  }
+
+.icon-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* This will space out the icons evenly */
+    gap: 5px;
+    align-items: center;
+  }
+
+.icon-column p {
+
+    display: inline; /* Inline display for the text next to the icon */
+    font-size: clamp(0.2rem, 3vw, 0.7rem); /* Adjust the font size as needed */
+    /* Add any other desired text styling here */
+}
+
+.icon {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+.icon-text-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    /* align-items: center; */
+    padding-left: 8px;
+}
+
+.icon-text-column p {
+  display: inline; /* Inline display for the text next to the icon */
+  font-size: clamp(0.2rem, 3vw, 0.5rem);
+}
+  
+.bio-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    background-color: #dfdbd6;
+    font-size: clamp(0.2rem, 3vw, 0.6rem);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: padding 0.2s ease;
+    width: 100%; /* accounting for padding */
+    box-sizing: border-box; /* ensures padding is included in width */
+
+}
+  
+.profile-card:hover .bio-row {
+    align-items: center;
+    padding: 5px; /* Add padding to the bio when expanded */
+    max-height: 100%; /* Set a max-height that can contain the text */
+}
+  
+@media screen and (max-width: 768px) {
+    .info-row, .bio-row, .profile-pic-column, .icon-column {
+        display: flex;
+        flex-wrap: nowrap;
+
+        text-align: start; /* Center-align text */
+    }
+
+    .profile-card {
+
+        flex-wrap: wrap;
+    }
+}

@@ -1,72 +1,59 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block content %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>StuntSolutions</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-</head>
-<body>
-    <div class="navbar">
-        <a>StuntSolutions | </a>
-        <a>Login</a>
-        <a>Register</a>
+<div class="form-box">
+    <div class="header">
+        <h1>Find a Cheer Coach Near You</h1>
     </div>
-    <div class="form-box">
-        <div class="header">
-            <h1>Find a Cheer Coach Near You</h1>
-        </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div class="profile-container">
+    {% for coach, distance in coaches_with_distance %}
         
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <div class="profile-container">
-        {% for coach, distance in coaches_with_distance %}
-            
-            <div class="profile-card">
-                <div class="info-row"> <!-- Flex container for the top row -->
-                    <div class="profile-pic-column">
-                        <img class="ProfilePic" src="{{ coach.profile_pic }}" alt="Profile Picture"/>
-                    </div>
-                    <div class="details-row">
-                        <h2>{{ coach.first_name }} {{ coach.last_name }}</h2>
-                        <p>Distance: {{distance|floatformat:2}} mi</p>
-                        <p>Phone: {{coach.phone}}</p>
-                        <p>Email: {{coach.email}}</p>
+        <div class="profile-card">
+            <div class="info-row"> <!-- Flex container for the top row -->
+                <div class="profile-pic-column">
+                    <img class="ProfilePic" src="{{ coach.profile_pic }}" alt="Profile Picture"/>
+                </div>
+                <div class="details-row">
+                    <h2>{{ coach.first_name }} {{ coach.last_name }}</h2>
+                    <p>Distance: {{distance|floatformat:2}} mi</p>
+                    <p>Phone: {{coach.phone}}</p>
+                    <p>Email: {{coach.email}}</p>
 
-                        
-                        
-                    </div>
-                    <div class="icon-column">
-                        <img class='icon' src="{% static 'price.png' %}">
-                        <img class='icon' src="{% static 'canstunt.png' %}"></img>
-                        {% if coach.coach_tumbling == "Yes" %}
-                            <img class='icon' src="{% static 'tumbling.png' %}"></img>
-                        {% endif %}
-                    </div>
-                    <div class="icon-text-column">
-                        <p>${{coach.price}}</p>
-                        <p>{{coach.coed_allgirl}}</p>
-                        {% if coach.coach_tumbling == "Yes" %}
-                            <p>Yes</p>  
-                        {% endif %}
-                    </div>
+                    
                     
                 </div>
-                <div class="bio-row"> <!-- Separate flex container for the bio -->
-                    <p>{{ coach.bio }}</p>
+                <div class="icon-column">
+                    <img class='icon' src="{% static 'price.png' %}">
+                    <img class='icon' src="{% static 'canstunt.png' %}"></img>
+                    {% if coach.coach_tumbling == "Yes" %}
+                        <img class='icon' src="{% static 'tumbling.png' %}"></img>
+                    {% endif %}
                 </div>
-
+                <div class="icon-text-column">
+                    <p>${{coach.price}}</p>
+                    <p>{{coach.coed_allgirl}}</p>
+                    {% if coach.coach_tumbling == "Yes" %}
+                        <p>Yes</p>  
+                    {% endif %}
+                </div>
+                
             </div>
-        {% endfor %}   
-    </div>
+            <div class="bio-row"> <!-- Separate flex container for the bio -->
+                <p>{{ coach.bio }}</p>
+            </div>
 
-</body>
-</html>
+        </div>
+    {% endfor %}   
+</div>
+
+{% endblock %}

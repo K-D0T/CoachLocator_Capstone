@@ -53,10 +53,11 @@ button {
   justify-content: space-around;
   align-items: center;
   color: #F0ECE5;
+  font-size: 0.8rem;
   height: 6vh; 
   background-color: #31304D;
   padding: 10px 20px;
-  box-shadow: 0px 5px 5px #222135;
+
 }
 
 .header {

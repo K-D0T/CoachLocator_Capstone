@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+<div class="coach-details-header">
+    <img class="ProfilePic" src="{{ profile_pic }}" alt="Profile Picture"/>
+    <h2>{{ coach }}</h2>
+
+    <p>Zip Code: {{ zip_code }} </p>
+    <p>Phone: {{ phone }}</p>
+    <p>Email: {{ email }}</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -224,3 +224,12 @@ input {
         flex-wrap: wrap;
     }
 }
+
+.coach-details-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}

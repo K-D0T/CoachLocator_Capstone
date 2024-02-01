@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from home.models import Coaches
@@ -56,3 +56,24 @@ def nearme(request):
         form = ZipSearchForm()
     context = {'form': form}
     return render(request, 'nearme.html', context)
+
+
+
+def coach_detail(request, coach_id):
+    coach = get_object_or_404(Coaches, pk=coach_id)
+    
+    context = {
+        'coach': coach,
+        'zip_code': coach.zip_code,
+        'phone': coach.phone,
+        'email': coach.email,
+        'price': coach.price,
+        'coed_allgirl': coach.coed_allgirl,
+        'coach_tumbling': coach.coach_tumbling,
+        'bio': coach.bio,
+        'profile_pic': coach.profile_pic.url,
+
+               }
+
+
+    return render(request, 'coachdetail.html', context)

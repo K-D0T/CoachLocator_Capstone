@@ -5,17 +5,6 @@ body, html {
 
   }
   
-.navbar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: #F0ECE5;
-    font-size: 0.8rem;
-    height: 6vh; 
-    background-color: #31304D;
-    padding: 10px 20px;
-  
-  }
 
 h1 {
     color: #F0ECE5;
@@ -28,13 +17,7 @@ form p {
     margin-bottom: 1rem;
   }
   
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='number'],
-input[type='file'],
-textarea,
-select {
+.become-coach-form-inputs {
     width: 90%;
     padding: 10px;
     margin-bottom: 1rem;
@@ -59,7 +42,7 @@ button {
   /* Media Queries */
 @media screen and (max-width: 767px) {
     /* Adjust padding and font sizes for mobile */
-    .container {
+    .becomecoach-container {
         padding: 10px;
     }
 
@@ -73,7 +56,7 @@ button {
   }
   
   /* Container for the form to center it */
-.container {
+.becomecoach-container {
     max-width: 100%; /* Set a max-width for larger screens */
     color: #F0ECE5;
     padding: 20px;

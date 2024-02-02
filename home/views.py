@@ -1,12 +1,16 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 from home.models import Coaches
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from .forms import ZipSearchForm, CoachForm
 import pgeocode
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate, logout
 
 def calculate_distance(zip_code, coach):
     dist = pgeocode.GeoDistance('us')
@@ -61,19 +65,64 @@ def nearme(request):
 
 def coach_detail(request, coach_id):
     coach = get_object_or_404(Coaches, pk=coach_id)
-    
+
+
     context = {
         'coach': coach,
-        'zip_code': coach.zip_code,
-        'phone': coach.phone,
-        'email': coach.email,
-        'price': coach.price,
-        'coed_allgirl': coach.coed_allgirl,
-        'coach_tumbling': coach.coach_tumbling,
-        'bio': coach.bio,
-        'profile_pic': coach.profile_pic.url,
 
-               }
+            }
 
 
     return render(request, 'coachdetail.html', context)
+
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password1')
+        confirm_password = request.POST.get('password2')
+        if password == confirm_password:
+            # Check if the user already exists
+            if not User.objects.filter(username=username).exists():
+                # Hash the password
+                hashed_password = make_password(password)
+                
+                # Create and save the user
+                user = User(username=username, email=email, password=hashed_password)
+                user.save()
+                
+                # Redirect to a success page or login page
+                return HttpResponseRedirect(reverse('home:becomecoach'))
+            else:
+                return HttpResponse('User already exists.')
+        else:
+            return HttpResponse('Passwords do not match.')
+    else:
+        # Render the signup form template
+        return render(request, 'register.html')
+    
+def user_login(request):
+    if request.method == 'POST':
+        # Retrieve username and password from request
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print(username, password)
+        # Use Django's built-in authenticate method
+        user = authenticate(request, username=username, password=password)
+        print(user)
+        if user is not None:
+            # If user is valid and active, log the user in and redirect to a success page
+            login(request, user)
+            return HttpResponseRedirect(reverse('home:home'))
+        else:
+            # Return an 'invalid login' error message or redirect to the login page again
+            
+            return HttpResponse('Invalid login credentials.')
+    else:
+        # Render the login form template
+        return render(request, 'login.html')
+    
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home:home'))

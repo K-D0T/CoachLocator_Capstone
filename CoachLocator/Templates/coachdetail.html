@@ -5,38 +5,75 @@
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
 <div class="coach-details-header">
-    <img class="ProfilePic" src="{{ profile_pic }}" alt="Profile Picture"/>
-    <h2>{{ coach }}</h2>
-
-    <p>Zip Code: {{ zip_code }} </p>
-    <p>Phone: {{ phone }}</p>
-    <p>Email: {{ email }}</p>
-
+    <div class="coach-details-profilepic-name">
+        <img class="ProfilePic" src="\{{ coach.profile_pic }}" alt="Profile Picture"/>
+        <div class="coach-contact">
+            <h1>{{ coach }}</h1>
+            <p>Phone: {{ coach.phone }}</p>
+            <p>Email: {{ coach.email }}</p>
+        </div>
+        
+    </div>
+    <hr style="width: 100%;">
+</div>
+<div class="coach-details-times">
+    <p>30 min</p>
+    <p>1 Hour</p>
+    
 </div>
 
 
+<div class="coach-details-price-zip">
+    
+    <div class="coach-details-icon-column">
+        
+        <img class='coach-details-icon' src="{% static 'price.png' %}">
+        <img class='coach-details-icon' src="{% static 'canstunt.png' %}"></img>
+        {% if coach.coach_tumbling == "Yes" %}
+            <img class='coach-details-icon' src="{% static 'tumbling.png' %}"></img>
+        {% endif %}
+    </div>
+
+    <!-- set this up by times like 30 min priv hour priv splitting with vr -->
+
+    <div class="coach-details-icon-text-column">
+        <p>${{ coach.price }}</p>
+        <p>{{ coach.coed_allgirl }}</p>
+        {% if coach.coach_tumbling == "Yes" %}
+            <p>Yes</p>  
+        {% endif %}
+    </div>
+    <div id="vertical-line"></div>
+    <div class="coach-details-icon-column">
+        
+        <img class='coach-details-icon' src="{% static 'price.png' %}">
+        <img class='coach-details-icon' src="{% static 'canstunt.png' %}"></img>
+        {% if coach.coach_tumbling == "Yes" %}
+            <img class='coach-details-icon' src="{% static 'tumbling.png' %}"></img>
+        {% endif %}
+    </div>
+
+    <!-- set this up by times like 30 min priv hour priv splitting with vr -->
+
+    <div class="coach-details-icon-text-column">
+        <p>${{ coach.price }}</p>
+        <p>{{ coach.coed_allgirl }}</p>
+        {% if coach.coach_tumbling == "Yes" %}
+            <p>Yes</p>  
+        {% endif %}
+    </div>
+</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="coach-details-bio">
+    <p>{{ coach.bio }}</p>
+</div>
+<div class="coach-details-videos">
+    {% for video in coach.videos.all %}
+        {{ video.video|safe }}
+    {% endfor %}
+    
+</div>
 
 
 {% endblock %}

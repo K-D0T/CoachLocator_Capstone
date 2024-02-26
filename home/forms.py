@@ -21,8 +21,8 @@ class CoachForm(forms.ModelForm):
 
         for i in self.fields:
 
-            self.fields[i].widget.attrs['class'] = 'form-control'
-
+            self.fields[i].widget.attrs['class'] = 'become-coach-form-inputs'
+            self.fields[i].widget.attrs['id'] = 'become-coach-form-inputs_id'
             self.fields[i].widget.attrs['required'] = True
 
 

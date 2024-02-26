@@ -6,7 +6,8 @@ class Coaches(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
-    price = models.IntegerField()
+    price_thirty = models.IntegerField()
+    price_hour = models.IntegerField()
     # chose between coed or allgirl 
     coed = 'Coed'
     allgirl = 'All-Girl'
@@ -34,9 +35,16 @@ class Coaches(models.Model):
     zip_code = models.CharField(max_length=10)
     profile_pic = models.ImageField(upload_to='media/', blank=True, null=True)
     bio = models.TextField()
+
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class Video(models.Model):
+    coach = models.ForeignKey(Coaches, related_name='videos', on_delete=models.CASCADE)
+    video = models.CharField(max_length=10000, null=True, blank=True)
+
 
 class Athlete(models.Model):
     id = models.AutoField(primary_key=True)

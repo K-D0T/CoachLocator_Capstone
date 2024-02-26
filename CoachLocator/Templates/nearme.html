@@ -24,7 +24,9 @@
                     <img class="ProfilePic" src="{{ coach.profile_pic }}" alt="Profile Picture"/>
                 </div>
                 <div class="details-row">
-                    <h2>{{ coach.first_name }} {{ coach.last_name }}</h2>
+                    <a style="text-decoration: none; color: inherit;" href="{% url 'home:coachdetail' coach.id %}">
+                        <h2>{{ coach.first_name }} {{ coach.last_name }}</h2>
+                    </a>
                     <p>Distance: {{distance|floatformat:2}} mi</p>
                     <p>Phone: {{coach.phone}}</p>
                     <p>Email: {{coach.email}}</p>
@@ -53,6 +55,7 @@
             </div>
 
         </div>
+
     {% endfor %}   
 </div>
 

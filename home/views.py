@@ -81,7 +81,7 @@ def register(request):
                 user.save()
                 
                 # Redirect to a success page or login page
-                return HttpResponseRedirect(reverse('home:user_login'))
+                return HttpResponseRedirect(reverse('home:login'))
             else:
                 return HttpResponse('User already exists.')
         else:

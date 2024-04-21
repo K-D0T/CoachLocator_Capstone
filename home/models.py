@@ -1,13 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Coaches(models.Model):
     id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
-    price_thirty = models.IntegerField()
-    price_hour = models.IntegerField()
+    price_thirty = models.IntegerField(null=True, blank=True)
+    price_hour = models.IntegerField(null=True, blank=True)
     # chose between coed or allgirl 
     coed = 'Coed'
     allgirl = 'All-Girl'

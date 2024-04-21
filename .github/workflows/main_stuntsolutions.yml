@@ -27,9 +27,6 @@ jobs:
           python -m venv venv
           source venv/bin/activate
 
-      - name: Install psycopg2
-        run: pip install psycopg2
-
       - name: Install dependencies
         run: pip install -r requirements.txt
 

@@ -62,7 +62,7 @@ ROOT_URLCONF = 'CoachLocator.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_DIR, 'templates/')],
+        'DIRS': [os.path.join(PROJECT_DIR, 'Templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

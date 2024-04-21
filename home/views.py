@@ -4,13 +4,12 @@ from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from home.models import Coaches
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import messages
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from .forms import ZipSearchForm, CoachForm
+from .forms import ZipSearchForm, CoachForm, ProfileForm, VideoForm
+from django.contrib.auth.decorators import login_required
 import pgeocode
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
+
 
 def calculate_distance(zip_code, coach):
     dist = pgeocode.GeoDistance('us')
@@ -36,17 +35,6 @@ def home(request):
     context = {'form': form}
     return render(request, 'index.html', context)
 
-def becomecoach(request):
-    if request.method == "POST":
-        form = CoachForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('home:home'))
-        else:
-            print("Form is not valid")
-            print(form.errors)
-    form = CoachForm()
-    return render(request, 'becomecoach.html', {'form': form})
 
 def nearme(request):
     if request.method == "POST":
@@ -93,7 +81,7 @@ def register(request):
                 user.save()
                 
                 # Redirect to a success page or login page
-                return HttpResponseRedirect(reverse('home:becomecoach'))
+                return HttpResponseRedirect(reverse('home:user_login'))
             else:
                 return HttpResponse('User already exists.')
         else:
@@ -116,9 +104,8 @@ def user_login(request):
             login(request, user)
             return HttpResponseRedirect(reverse('home:home'))
         else:
-            # Return an 'invalid login' error message or redirect to the login page again
-            
-            return HttpResponse('Invalid login credentials.')
+            messages.error(request, 'Invalid login credentials.')
+            return HttpResponseRedirect(reverse('home:login'))
     else:
         # Render the login form template
         return render(request, 'login.html')
@@ -126,3 +113,29 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('home:home'))
+
+@login_required
+def profile(request):
+    profile, created = Coaches.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        profileform = ProfileForm(request.POST, request.FILES, instance=profile)
+        videoform = VideoForm(request.POST)
+
+        if profileform.is_valid():
+            profileform.save()
+            # Only redirect if BOTH forms are not valid, else stay on the page to process the second form
+            if not videoform.is_valid():
+                return redirect('/profile')  # Redirect to the profile view after saving
+
+        # Check if videoform is valid in a separate condition to allow for video addition without profile edit
+        if videoform.is_valid():
+            video = videoform.save(commit=False)
+            video.coach = profile  # Associate the video with the current user's profile
+            video.save()
+            return redirect('/profile')  # Redirect to the profile view after saving
+    else:
+        profileform = ProfileForm(instance=profile)
+        videoform = VideoForm()  # Do not pass instance here since we're adding new videos
+
+    return render(request, 'profile.html', {'profileform': profileform, 'videoform': videoform})

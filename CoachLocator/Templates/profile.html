@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/becomecoach.css' %}">
+<h1>Edit your profile</h1>
+<form class="becomecoach-container" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ profileform|crispy }}
+    {{ videoform|crispy }}
+    <button type="submit">Save changes</button>
+</form>
+
+{% endblock %}

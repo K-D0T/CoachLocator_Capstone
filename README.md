@@ -1,7 +1,7 @@
 # Coach Locator for Cheerleading
 
 ## Description
-Coach Locator is a web application designed to connect cheerleaders with local coaches. It allows users to search for coaches based on location, skills, and other criteria. This project is part of the Capstone for XDIS4000.
+Coach Locator is a web application designed to connect cheerleaders with local coaches. It allows users to search for coaches based on location, skills, and other criteria. This project is part of the Capstone for XIDS4000.
 
 ## Features
 - Search for cheerleading coaches by zip code.

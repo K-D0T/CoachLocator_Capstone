@@ -102,7 +102,7 @@ def user_login(request):
         if user is not None:
             # If user is valid and active, log the user in and redirect to a success page
             login(request, user)
-            return HttpResponseRedirect(reverse('home:home'))
+            return HttpResponseRedirect(reverse('home:profile'))
         else:
             messages.error(request, 'Invalid login credentials.')
             return HttpResponseRedirect(reverse('home:login'))

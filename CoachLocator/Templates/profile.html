@@ -4,11 +4,33 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/becomecoach.css' %}">
 <h1>Edit your profile</h1>
+<a href="{% url 'home:coachdetail' coach_id=request.user.coaches.id %}" class="my-btn">View Profile</a>
+
+<style>
+.my-btn {
+    display: flex;
+    color: #fff;
+    background-color: #31304D;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    justify-content: center;
+    margin: 15px;
+    text-decoration: none;
+}
+
+.my-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+</style>
 <form class="becomecoach-container" method="post" enctype="multipart/form-data" >
     {% csrf_token %}
     {{ profileform|crispy }}
     {{ videoform|crispy }}
     <button type="submit">Save changes</button>
 </form>
+
 
 {% endblock %}

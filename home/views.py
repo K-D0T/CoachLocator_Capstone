@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 import pgeocode
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from PIL import Image
+from PIL import Image, ImageOps
 from io import BytesIO
 from django.core.files.base import ContentFile
 
@@ -20,6 +20,10 @@ def calculate_distance(zip_code, coach):
 
 def get_coaches_with_distance(zip_code):
     coaches = Coaches.objects.all()
+
+    # find coaches with profile filled out 
+    coaches = [coach for coach in coaches if coach.profile_pic]
+
     coaches_with_distance = [(coach, calculate_distance(zip_code, coach)) for coach in coaches]
     coaches_with_distance.sort(key=lambda x: x[1])
     return coaches_with_distance
@@ -127,6 +131,9 @@ def profile(request):
         if profileform.is_valid():
             profile = profileform.save(commit=False)
             image = Image.open(profileform.cleaned_data['profile_pic'])
+
+            image = ImageOps.exif_transpose(image)  # Rotate the image correctly
+
             image = image.resize((100, 100), Image.LANCZOS)
 
             # Convert the Image object to a file-like object

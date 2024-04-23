@@ -27,7 +27,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'stuntsolutions-database',
         'USER': 'csishbpfim',
-        'PASSWORD': 'KEka2407!',
+        'PASSWORD': os.environ['DB_PASSWORD'],
         'HOST': 'stuntsolutions-server.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {

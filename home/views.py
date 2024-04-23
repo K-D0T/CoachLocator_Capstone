@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 import pgeocode
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-
+from PIL import Image
 
 def calculate_distance(zip_code, coach):
     dist = pgeocode.GeoDistance('us')
@@ -123,7 +123,11 @@ def profile(request):
         videoform = VideoForm(request.POST)
 
         if profileform.is_valid():
-            profileform.save()
+            profile = profileform.save(commit=False)
+            image = Image.open(profileform.cleaned_data['image'])
+            image = image.resize((50, 50), Image.ANTIALIAS)
+            profile.image.save(profileform.cleaned_data['image'].name, image, save=False)
+            profile.save()
             # Only redirect if BOTH forms are not valid, else stay on the page to process the second form
             if not videoform.is_valid():
                 return redirect('/profile')  # Redirect to the profile view after saving

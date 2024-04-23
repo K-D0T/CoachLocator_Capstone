@@ -122,7 +122,9 @@ def user_logout(request):
 
 @login_required
 def profile(request):
+    print(request.user.email)
     profile, created = Coaches.objects.get_or_create(user=request.user)
+    print(Coaches.objects.get(user=request.user))
 
     if request.method == 'POST':
         profileform = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -134,7 +136,7 @@ def profile(request):
 
             image = ImageOps.exif_transpose(image)  # Rotate the image correctly
 
-            image = image.resize((100, 100), Image.LANCZOS)
+            image = image.resize((150, 150), Image.LANCZOS)
 
             # Convert the Image object to a file-like object
             image_io = BytesIO()

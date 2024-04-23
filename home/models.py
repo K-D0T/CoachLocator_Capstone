@@ -7,7 +7,7 @@ class Coaches(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=False)
     price_thirty = models.IntegerField(null=True, blank=True)
     price_hour = models.IntegerField(null=True, blank=True)
     # chose between coed or allgirl 

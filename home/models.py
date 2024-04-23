@@ -45,7 +45,7 @@ class Coaches(models.Model):
 
 class Video(models.Model):
     coach = models.ForeignKey(Coaches, related_name='videos', on_delete=models.CASCADE)
-    video = models.CharField(max_length=10000, null=True, blank=True)
+    video = models.CharField(max_length=10000, null=True, blank=True, verbose_name="Link to Instagram Reel")
 
 
 class Athlete(models.Model):

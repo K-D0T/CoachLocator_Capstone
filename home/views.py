@@ -12,6 +12,7 @@ from django.contrib import messages
 from PIL import Image, ImageOps
 from io import BytesIO
 from django.core.files.base import ContentFile
+import requests
 
 def calculate_distance(zip_code, coach):
     dist = pgeocode.GeoDistance('us')
@@ -151,10 +152,18 @@ def profile(request):
 
         # Check if videoform is valid in a separate condition to allow for video addition without profile edit
         if videoform.is_valid():
-            video = videoform.save(commit=False)
-            video.coach = profile  # Associate the video with the current user's profile
-            video.save()
-            return redirect('/profile')  # Redirect to the profile view after saving
+            try:
+                instaurl = videoform.cleaned_data['video']
+                response = requests.get(f"https://iframe.ly/api/oembed?url={instaurl}&api_key=f68b29ec833a23d0d81c6c")
+                data = response.json()
+                html = data['html']
+                video = videoform.save(commit=False)
+                video.video = html  # Assign the html to the video field of the video instance
+                video.coach = profile  # Associate the video with the current user's profile
+                video.save()
+            except Exception as e:
+                print(f"Failed to add video: {e}")
+            return redirect('/profile')  # Redirect to the profile view after saving  # Redirect to the profile view after saving  # Redirect to the profile view after saving
     else:
         profileform = ProfileForm(instance=profile)
         videoform = VideoForm()  # Do not pass instance here since we're adding new videos

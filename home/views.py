@@ -10,6 +10,8 @@ import pgeocode
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 
 def calculate_distance(zip_code, coach):
     dist = pgeocode.GeoDistance('us')
@@ -124,9 +126,15 @@ def profile(request):
 
         if profileform.is_valid():
             profile = profileform.save(commit=False)
-            image = Image.open(profileform.cleaned_data['image'])
-            image = image.resize((50, 50), Image.ANTIALIAS)
-            profile.image.save(profileform.cleaned_data['image'].name, image, save=False)
+            image = Image.open(profileform.cleaned_data['profile_pic'])
+            image = image.resize((50, 50), Image.LANCZOS)
+
+            # Convert the Image object to a file-like object
+            image_io = BytesIO()
+            image.save(image_io, format='JPEG')
+            image_file = ContentFile(image_io.getvalue(), name=profileform.cleaned_data['profile_pic'].name)
+
+            profile.profile_pic.save(image_file.name, image_file, save=False)
             profile.save()
             # Only redirect if BOTH forms are not valid, else stay on the page to process the second form
             if not videoform.is_valid():

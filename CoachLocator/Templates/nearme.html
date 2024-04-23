@@ -21,7 +21,7 @@
         <div class="profile-card">
             <div class="info-row"> <!-- Flex container for the top row -->
                 <div class="profile-pic-column">
-                    <img class="ProfilePic" src="{{ coach.profile_pic }}" alt="Profile Picture"/>
+                    <img class="ProfilePic" src="https://stuntsolutionsmedia.blob.core.windows.net/media/{{ coach.profile_pic }}" alt="Profile Picture"/>
                 </div>
                 <div class="details-row">
                     <a style="text-decoration: none; color: inherit;" href="{% url 'home:coachdetail' coach.id %}">

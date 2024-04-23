@@ -127,7 +127,7 @@ def profile(request):
         if profileform.is_valid():
             profile = profileform.save(commit=False)
             image = Image.open(profileform.cleaned_data['profile_pic'])
-            image = image.resize((50, 50), Image.LANCZOS)
+            image = image.resize((100, 100), Image.LANCZOS)
 
             # Convert the Image object to a file-like object
             image_io = BytesIO()

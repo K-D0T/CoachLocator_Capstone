@@ -13,6 +13,7 @@ from PIL import Image, ImageOps
 from io import BytesIO
 from django.core.files.base import ContentFile
 import requests
+from django.core.mail import send_mail
 
 def calculate_distance(zip_code, coach):
     dist = pgeocode.GeoDistance('us')
@@ -79,23 +80,43 @@ def register(request):
         confirm_password = request.POST.get('password2')
         if password == confirm_password:
             # Check if the user already exists
-            if not User.objects.filter(username=username).exists():
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'Username already exists.')
+                return render(request, 'register.html')
+            # Check if the email is already in use
+            elif User.objects.filter(email=email).exists():
+                messages.error(request, 'Email is already in use.')
+                return render(request, 'register.html')
+            else:
                 # Hash the password
                 hashed_password = make_password(password)
                 
                 # Create and save the user
                 user = User(username=username, email=email, password=hashed_password)
                 user.save()
+
+                # Send an email notification
+                send_mail(
+                    'New user registration',
+                    f'A new user has registered with the username: {username}',
+                    'kaiden.thrailkill@gmail.com',  # Replace with your email
+                    ['kaiden.thrailkill@gmail.com'],  # Replace with your email
+                    fail_silently=False,
+                )
                 
+                # Log the user in
+                login(request, user)
+
                 # Redirect to a success page or login page
-                return HttpResponseRedirect(reverse('home:login'))
-            else:
-                return HttpResponse('User already exists.')
+                return HttpResponseRedirect(reverse('home:profile'))
         else:
-            return HttpResponse('Passwords do not match.')
+            messages.error(request, 'Passwords do not match.')
+            return render(request, 'register.html')
     else:
         # Render the signup form template
         return render(request, 'register.html')
+    
+
     
 def user_login(request):
     if request.method == 'POST':

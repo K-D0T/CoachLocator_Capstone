@@ -120,13 +120,20 @@ def register(request):
     
 def user_login(request):
     if request.method == 'POST':
-        # Retrieve username and password from request
-        username = request.POST.get('username')
+        # Retrieve username/email and password from request
+        username_or_email = request.POST.get('username')
         password = request.POST.get('password')
-        print(username, password)
-        # Use Django's built-in authenticate method
-        user = authenticate(request, username=username, password=password)
-        print(user)
+
+        # Try to find a user that matches either the username or email
+        user = authenticate(username=username_or_email, password=password)
+        if user is None:
+            try:
+                user_obj = User.objects.filter(email=username_or_email).first()
+                if user_obj:
+                    user = authenticate(username=user_obj.username, password=password)
+            except User.DoesNotExist:
+                pass
+
         if user is not None:
             # If user is valid and active, log the user in and redirect to a success page
             login(request, user)
@@ -144,10 +151,7 @@ def user_logout(request):
 
 @login_required
 def profile(request):
-    print(request.user.email)
     profile, created = Coaches.objects.get_or_create(user=request.user)
-    print(Coaches.objects.get(user=request.user))
-
     if request.method == 'POST':
         profileform = ProfileForm(request.POST, request.FILES, instance=profile)
         videoform = VideoForm(request.POST)
@@ -167,6 +171,7 @@ def profile(request):
 
             profile.profile_pic.save(image_file.name, image_file, save=False)
             profile.save()
+            messages.success(request, "Successfully Updated Profile")
             # Only redirect if BOTH forms are not valid, else stay on the page to process the second form
             if not videoform.is_valid():
                 return redirect('/profile')  # Redirect to the profile view after saving
@@ -182,6 +187,7 @@ def profile(request):
                 video.video = html  # Assign the html to the video field of the video instance
                 video.coach = profile  # Associate the video with the current user's profile
                 video.save()
+                messages.success(request, "Successfully Updated Profile")
             except Exception as e:
                 print(f"Failed to add video: {e}")
             return redirect('/profile')  # Redirect to the profile view after saving  # Redirect to the profile view after saving  # Redirect to the profile view after saving
